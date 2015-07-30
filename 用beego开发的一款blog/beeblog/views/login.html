@@ -1,0 +1,64 @@
+{{template "header" .}}
+	<title>登录</title>
+	</head>
+	<body>	
+		<div class="container" style="width: 500px;margin-top: 120px">
+			<form action="/login" method="post">
+			  <div class="form-group">
+			    <label for="exampleInputAccount">Account</label>
+			    <input class="form-control" id="account" placeholder="Enter Account" name="username">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Password</label>
+			    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+			  </div>
+			  <div class="checkbox">
+			  	<label>
+			  		<input type="checkbox" name="autoLogin">自动登陆
+			  	</label>
+			  </div>
+			 	<button type="submit" class="btn btn-default" onclick="return checkInput()" >登录</button>
+			 	<button class="btn btn-default" onclick="return backHome()" >返回首页</button>
+			</form>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	function checkInput(){
+		var username = document.getElementById("account");
+		if(username.value.length==0){
+			alert('请输入用户名');
+			return false;
+		}
+
+		var password = document.getElementById("password");
+		if(password.value.length==0){
+			alert('请输入密码');
+			return false;
+		}
+		return true;
+	}
+	function backHome(){
+		window.location.href="/";
+		return false;
+	}
+	function browser(){
+		alert('aaaaaaaaaaaaaaa');
+ 		var u = navigator.userAgent.toLowerCase(), app = navigator.appVersion;
+  		var trident=u.indexOf('trident') > -1; //IE内核
+ 		var presto= u.indexOf('presto') > -1; //opera内核
+		var webKit= u.indexOf('applewebkit') > -1; //苹果、谷歌内核
+		var gecko= u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1; //火狐内核
+		var ios= !!u.match(/\(i[^;]+;( U;)? cpu.+mac os x/); //ios终端
+		var android= u.indexOf('android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+		var iPhone= u.indexOf('iphone') > -1 || u.indexOf('Mac') > -1; //是否为iPhone或者QQHD浏览器
+		var mobile= !!u.match(/applewebkit.*mobile.*/) || !!u.match(/applewebkit/); //是否为移动终端
+		var iPad= u.indexOf('ipad') > -1; //是否iPad
+		var webApp= u.indexOf('safari') == -1; //是否web应该程序，没有头部与底部  
+		var language= (navigator.browserLanguage || navigator.language).toLowerCase();
+		if (mobile || ios || iPhone || android || iPad ) {
+   			document.writeln("phone");
+    		alert("phone"+":"+trident+"&"+presto+"&"+webKit+"&"+gecko);
+		}
+ 	}
+</script>

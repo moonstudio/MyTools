@@ -1,0 +1,61 @@
+{{template "header" .}}
+  <title>Moonstudio blog-Categroy</title>
+</head>
+<body>
+  <div class="navbar navbar-default">
+    <div class="container">
+    {{template "navbar" .}}
+    </div>
+  </div>
+  
+  <div class="container">
+        
+    <div class="page-header">
+      <h1>分类列表</h1>
+
+     <form action="/category" method="get">
+        <div class="form-group">
+          <label for="exampleInputAccount">分类名称</label>
+          <input class="form-control" id="cname" placeholder="Enter Categroy" name="cname">
+        </div>
+        <input type="hidden" name="op" value="add">
+        <button type="submit" class="btn btn-default" onclick="return checkInput()" >添加</button>
+      </form>
+      <table class="table table-striped">
+        <thead>
+          <th>#</th>
+          <th>名称</th>
+          <th>文章数</th>
+          <th>操作</th>
+        </thead>
+        <tbody>
+          {{range .Categories}}
+          <tr>
+            <td>{{.Id}}</td>
+            <td>{{.Title}}</td>
+            <td>{{.TopicCount}}</td>
+            <td><a href="/category?op=del&id={{.Id}}">删除</a></td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+  function checkInput(){
+    var cname = document.getElementById("cname");
+    if(cname.value.length==0){
+      alert('请输入分类名称');
+      return false;
+    }
+  }
+  function backHome(){
+    window.location.href="/";
+    return false;
+  }
+</script>

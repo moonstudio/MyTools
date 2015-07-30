@@ -1,0 +1,66 @@
+{{define "xzq"}}
+  <div class="form-group">
+	<label for="exampleInputAccount">省</label>
+  	<div>
+		<select class="form-control" name="sheng" id="sheng"  onchange=shengcheck(this.value) >
+	    	{{range .Sheng}}
+	      	<option value="{{.Xzq}}">{{.Xzqmc}}</option>
+	    	{{end}}
+	    </select>
+  	</div>
+  	<label for="exampleInputAccount">市</label>
+  	<div>
+	    <select class="form-control" name="shi" id="shi" onchange=shicheck(this.value)>
+		   	 {{range .TempDate}}
+			<!-- <option value={{.Id}} {{if .IsSelected}} select="selected"{{end}}>{{.Value}}</option> -->
+			<option value="{{.Xzqmc}}">{{.Xzqmc}}</option>
+			{{end}}
+	    	<!-- {{range .Shi}}
+	      	<option value="{{.Xzqmc}}">{{.Xzqmc}}</option>
+	    	{{end}} -->
+	    </select>
+  	</div>
+  	<label for="exampleInputAccount">区</label>
+  	<div>
+	    <select class="form-control" name="qu" id="qu">
+	    	{{range .Qu}}
+	      	<option value="{{.Xzqmc}}">{{.Xzqmc}}</option>
+	    	{{end}}
+	    </select>
+  	</div>
+  </div>
+ 	<script type="text/javascript">
+	 function shengcheck(xzq){
+		alert('shengcheck');
+	 	$.ajax({
+	        type: "post",
+	        contentType: "application/json",
+	        url: "/xzq?xzq="+xzq,
+	        data: "{}",
+	        success: function (result) {
+	        	var op = "<option>请选择</option>";
+	        	//alert({{.aaaa}});
+	        	alert({{.xzqJson}});
+	        	alert('result'+result);
+	            
+	            $("#shi").html(op);
+	       }
+	    })
+	}
+
+	function shicheck(xzq){
+	 	$.ajax({
+	        type: "post",
+	        contentType: "application/json",
+	        url: "/xzq",
+	        data: "{xzq:xzq}",
+	        success: function (result) {
+	        	var op = "<option>saaaa</option>";
+	           	
+	            $("#shi").html(op);
+	        }
+	    })
+	}
+		
+ 	</script>
+{{end}}

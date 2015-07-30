@@ -1,0 +1,52 @@
+{{template "header" .}}
+  <title>Moonstudio blog</title>
+</head>
+<body onload="browser()">
+  <div id="content">
+  </div>
+  <div class="navbar navbar-default">
+    <div class="container">
+    {{template "navbar" .}}
+    </div>
+  </div>
+  
+  <div class="container">
+     {{range .Topics}}
+       <div class="page-header">
+       <h1><a href="/topic?op=info&id={{.Id}}">{{.Title}}</a></h1>
+        <h6 class="text-muted">文章发表于{{.CreateTime}}年 {{.ReplyCount}}回复 200个赞</h6>
+        <p>{{.Content}}</p>
+      </div>
+     {{end}}
+  </div>
+  <div class="">
+  </div>
+  <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+  function browser(){
+    var u = navigator.userAgent.toLowerCase(), app = navigator.appVersion;
+    var trident=u.indexOf('trident') > -1; //IE内核
+    var presto= u.indexOf('presto') > -1; //opera内核
+    var webKit= u.indexOf('applewebkit') > -1; //苹果、谷歌内核
+    var gecko= u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1; //火狐内核
+    var ios= !!u.match(/\(i[^;]+;( U;)? cpu.+mac os x/); //ios终端
+    var android= u.indexOf('android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+    var iPhone= u.indexOf('iphone') > -1 || u.indexOf('Mac') > -1; //是否为iPhone或者QQHD浏览器
+    var mobile= !!u.match(/applewebkit.*mobile.*/) || !!u.match(/applewebkit/); //是否为移动终端
+    var iPad= u.indexOf('ipad') > -1; //是否iPad
+    var webApp= u.indexOf('safari') == -1; //是否web应该程序，没有头部与底部  网页端
+    var language= (navigator.browserLanguage || navigator.language).toLowerCase();
+  
+    if(android){
+      window.location="http://www.pgyer.com/hsF7"
+      // $("#content").html("<div style='height: 60px;background-color: #fff;text-align: center'><a href='http://www.pgyer.com/hsF7'><img src='/static/img/headerlogo.png'></a></div>");
+    }
+    if(iPhone&&ios){
+       window.location="http://www.pgyer.com/WonderSchool"
+      // $("#content").html("<div style='height: 60px;background-color: #fff;text-align: center'><a href='http://www.pgyer.com/WonderSchool'><img src='/static/img/headerlogo.png'></a></div>");
+    }
+  }
+</script>
