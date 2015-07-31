@@ -1,0 +1,17 @@
+1、d:\MySQL\bin\>MySQL -h localhost -u root 
+MySQL>update user set host = '%' where user = 'root'; 
+MySQL>select host, user from user; 
+
+2、MySQL>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypassword' WITH GRANT OPTION 
+
+予任何主机访问数据的权限 
+
+3、MySQL>FLUSH PRIVILEGES 
+
+修改生效 
+
+4、MySQL>EXIT 
+
+退出MySQL服务器 
+
+这样就可以在其它任何的主机上以root身份登录啦！ 
